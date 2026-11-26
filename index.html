@@ -1514,6 +1514,20 @@ function ringShock(pt, color){
     c.setAttribute('opacity', String(.9*(1-p)));
   }).then(()=>g.remove());
 }
+function slashFX(pt, color){
+  const g = svgEl('g', { transform:'translate(' + pt.x + ',' + pt.y + ')' });
+  const arc = svgEl('path', {
+    d:'M-48 -42 Q 8 -64 48 -12',
+    fill:'none', stroke: color || '#FFF8EC', 'stroke-width':9,
+    'stroke-linecap':'round', opacity:.9
+  });
+  g.appendChild(arc);
+  fx.appendChild(g);
+  tween(280, (p)=>{
+    g.setAttribute('opacity', String(.9*(1-p)));
+    g.setAttribute('transform', 'translate(' + pt.x + ',' + pt.y + ') rotate(' + (18*p) + ') scale(' + (.82 + .5*p) + ')');
+  }).then(()=>g.remove());
+}
 function meleeImpact(type, pt, power, opts){
   opts = opts || {};
   power = power || 1;
@@ -1529,12 +1543,13 @@ function meleeImpact(type, pt, power, opts){
   kick(power);
   if(opts.quip !== '') popText(opts.quip || pick(food.quips), pt);
   if(type === 'pan'){ ringShock(pt); stars(pt); }
+  if(type === 'baguette' || type === 'pan' || type === 'rollingpin') slashFX(pt, type === 'pan' ? '#FFF3D0' : '#FFF8EC');
   if(type === 'whip'){ addWelt(); ringShock(pt, '#F2D98B'); }
 }
 
 async function baguetteRush(){
   const weapon = equipWeapon('baguette', 2.2, -20);
-  await dashTo(-380, 320);
+  await dashTo(-400, 320);
   leanTo(-7, 160);
   for(let i=0;i<3;i++){
     const pt = ratScene(rand(-12,12), 55 + i*42);
@@ -1556,7 +1571,7 @@ async function baguetteRush(){
 
 async function panSlam(){
   const weapon = equipWeapon('pan', 2.1, -80);
-  await dashTo(-400, 340);
+  await dashTo(-410, 340);
   leanTo(-8, 160);
   await tween(230, (p)=>{
     armSwing.setAttribute('transform', 'rotate(' + lerp(0,95,easeOut(p)) + ')');
@@ -1578,7 +1593,7 @@ async function panSlam(){
 
 async function rollingPinCombo(){
   const weapon = equipWeapon('rollingpin', 2.0, 0);
-  await dashTo(-380, 300);
+  await dashTo(-400, 300);
   leanTo(-7, 150);
   for(let i=0;i<4;i++){
     const high = i % 2 === 0;
