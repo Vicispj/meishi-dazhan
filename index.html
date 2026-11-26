@@ -60,7 +60,7 @@
   #sign::before{left:6px}#sign::after{right:6px}
   .topbar{position:absolute;right:2.2%;top:2.6%;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
   .pill{
-    border:3px solid var(--ink);background:var(--cream);border-radius:999px;
+    border:3px solid var(--ink);background:linear-gradient(#FFFDF7,#FFEFD6);border-radius:999px;
     padding:clamp(4px,.9vh,8px) clamp(8px,1.1vw,15px);
     font-family:inherit;font-size:clamp(11px,1.5vh,16px);font-weight:700;color:var(--ink);
     box-shadow:0 3px 0 #D9BE93;cursor:pointer;
@@ -77,21 +77,23 @@
   }
   #moves{
     position:fixed;left:0;right:0;bottom:0;height:var(--panelH);z-index:5;
-    background:#FFF7E7;border-top:4px solid var(--ink);
+    background:linear-gradient(#FFFBF2,#FFF1D9);border-top:4px solid var(--ink);
     box-shadow:0 -8px 0 rgba(91,66,49,.07);
     display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:1fr;
     gap:clamp(4px,1vh,10px);
     padding:clamp(6px,1.4vh,14px) clamp(8px,1.6vw,22px);
-    background-image:radial-gradient(rgba(91,66,49,.055) 1.2px, transparent 1.3px);
-    background-size:18px 18px;
+    background-image:
+      radial-gradient(rgba(91,66,49,.05) 1.2px, transparent 1.3px),
+      linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,245,225,0));
+    background-size:18px 18px, 100% 100%;
   }
   .move{
     position:relative;min-width:0;display:flex;align-items:center;gap:6px;
     padding:2px clamp(5px,0.7vw,10px);
     border:3px solid var(--ink);border-radius:clamp(9px,1.4vh,15px);
-    background:#FFFDF8;color:var(--ink);font-family:inherit;
+    background:linear-gradient(#FFFDF9,#FFF2DC);color:var(--ink);font-family:inherit;
     font-size:clamp(11px,1.55vh,17px);font-weight:700;
-    box-shadow:0 3px 0 #D9BE93;cursor:pointer;overflow:hidden;white-space:nowrap;
+    box-shadow:0 3px 0 #D9BE93,inset 0 1px 0 #FFF;cursor:pointer;overflow:hidden;white-space:nowrap;
     transition:transform .08s ease, box-shadow .08s ease;
   }
   .move svg{width:clamp(24px,3.9vh,44px);height:clamp(24px,3.9vh,44px);flex:none}
@@ -169,14 +171,92 @@
   <svg id="scene" viewBox="0 0 1280 560" preserveAspectRatio="xMidYMax meet" aria-label="美食大王大作战场景">
     <defs>
       <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#FFF9EC"/>
-        <stop offset=".65" stop-color="#FFEFD8"/>
-        <stop offset="1" stop-color="#FFE6CC"/>
+        <stop offset="0" stop-color="#FFF9EA"/>
+        <stop offset=".55" stop-color="#FFEFD3"/>
+        <stop offset="1" stop-color="#FFE3BE"/>
       </linearGradient>
+      <radialGradient id="sunGlow" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#FFE7A0" stop-opacity=".85"/>
+        <stop offset="1" stop-color="#FFE7A0" stop-opacity="0"/>
+      </radialGradient>
       <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#C6E8C3"/>
-        <stop offset="1" stop-color="#A9D6A6"/>
+        <stop offset="0" stop-color="#CBECBF"/>
+        <stop offset="1" stop-color="#9FD09A"/>
       </linearGradient>
+      <linearGradient id="hillGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#DDF3C9"/>
+        <stop offset="1" stop-color="#C4E6B8"/>
+      </linearGradient>
+      <linearGradient id="ratFur" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#CBD5E6"/>
+        <stop offset=".55" stop-color="#B4C0D4"/>
+        <stop offset="1" stop-color="#96A5BE"/>
+      </linearGradient>
+      <radialGradient id="ratHeadFur" cx=".38" cy=".32" r=".78">
+        <stop offset="0" stop-color="#D8E1F0"/>
+        <stop offset=".7" stop-color="#B7C2D6"/>
+        <stop offset="1" stop-color="#98A7C0"/>
+      </radialGradient>
+      <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F7C7D5"/>
+        <stop offset="1" stop-color="#EBA6BA"/>
+      </linearGradient>
+      <linearGradient id="snoutGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#EFF4FB"/>
+        <stop offset="1" stop-color="#D3DCEA"/>
+      </linearGradient>
+      <linearGradient id="apronGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFDF6"/>
+        <stop offset="1" stop-color="#F5ECDC"/>
+      </linearGradient>
+      <linearGradient id="hatGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF"/>
+        <stop offset=".68" stop-color="#FFFCF4"/>
+        <stop offset="1" stop-color="#EDE2D0"/>
+      </linearGradient>
+      <linearGradient id="scarfGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F26D5F"/>
+        <stop offset="1" stop-color="#D8443B"/>
+      </linearGradient>
+      <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFE9DA"/>
+        <stop offset="1" stop-color="#FFD2BC"/>
+      </linearGradient>
+      <linearGradient id="hairGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#A26B47"/>
+        <stop offset=".5" stop-color="#8B5A3C"/>
+        <stop offset="1" stop-color="#6E4229"/>
+      </linearGradient>
+      <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFB6C8"/>
+        <stop offset=".6" stop-color="#FF94AE"/>
+        <stop offset="1" stop-color="#F07898"/>
+      </linearGradient>
+      <linearGradient id="apronWhite" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFDF8"/>
+        <stop offset="1" stop-color="#F7EEDF"/>
+      </linearGradient>
+      <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFE48E"/>
+        <stop offset=".5" stop-color="#FFCF5C"/>
+        <stop offset="1" stop-color="#E9A93B"/>
+      </linearGradient>
+      <linearGradient id="shoeGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#A5704B"/>
+        <stop offset="1" stop-color="#70432A"/>
+      </linearGradient>
+      <radialGradient id="blushGrad" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#FF9AAF" stop-opacity=".7"/>
+        <stop offset="1" stop-color="#FF9AAF" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="vignette" cx=".5" cy=".45" r=".78">
+        <stop offset=".62" stop-color="#000" stop-opacity="0"/>
+        <stop offset="1" stop-color="#7A4A2B" stop-opacity=".13"/>
+      </radialGradient>
+      <pattern id="check" width="22" height="16" patternUnits="userSpaceOnUse">
+        <rect width="11" height="8" fill="#E8554A" opacity=".85"/>
+        <rect x="11" y="8" width="11" height="8" fill="#E8554A" opacity=".85"/>
+      </pattern>
       <filter id="rough" x="-12%" y="-12%" width="124%" height="124%">
         <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="n"/>
         <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
@@ -190,42 +270,119 @@
     <!-- 背景 -->
     <g id="bg">
       <rect width="1280" height="560" fill="url(#skyGrad)"/>
-      <circle cx="1120" cy="86" r="54" fill="#FFE29A"/>
-      <circle cx="1120" cy="86" r="68" fill="#FFE29A" opacity=".25"/>
-      <g fill="#FFFFFF" opacity=".88" filter="url(#rough)">
-        <ellipse cx="180" cy="92" rx="66" ry="24"/>
-        <ellipse cx="232" cy="76" rx="46" ry="28"/>
-        <ellipse cx="130" cy="78" rx="38" ry="22"/>
-        <ellipse cx="560" cy="58" rx="52" ry="18"/>
-        <ellipse cx="606" cy="48" rx="36" ry="20"/>
-        <ellipse cx="860" cy="112" rx="44" ry="16"/>
-        <ellipse cx="898" cy="104" rx="30" ry="16"/>
+      <circle cx="1120" cy="86" r="150" fill="url(#sunGlow)"/>
+      <g stroke="#FFE29A" stroke-width="6" opacity=".22" stroke-linecap="round">
+        <path d="M1120 6 v-18 M1120 166 v18 M1040 86 h-18 M1200 86 h18 M1063 29 l-13 -13 M1177 143 l13 13 M1177 29 l13 -13 M1063 143 l-13 13"/>
       </g>
-      <path d="M0 434 Q 150 402 306 426 T 630 420 T 950 430 T 1280 418 L1280 560 L0 560 Z" fill="#D9EFC8"/>
+      <circle cx="1120" cy="86" r="54" fill="#FFE29A" stroke="#F0C76A" stroke-width="3"/>
+      <circle cx="1104" cy="70" r="15" fill="#FFF3C9" opacity=".75"/>
+
+      <g opacity=".95">
+        <g transform="translate(180,92)">
+          <ellipse cx="0" cy="12" rx="72" ry="17" fill="#EBD9BE" opacity=".5"/>
+          <ellipse cx="0" cy="0" rx="66" ry="24" fill="#FFFDF8"/>
+          <ellipse cx="52" cy="-16" rx="46" ry="28" fill="#FFFDF8"/>
+          <ellipse cx="-50" cy="-14" rx="38" ry="22" fill="#FFFDF8"/>
+          <ellipse cx="10" cy="-22" rx="50" ry="26" fill="#FFFFFF"/>
+        </g>
+        <g transform="translate(575,60)">
+          <ellipse cx="0" cy="8" rx="50" ry="12" fill="#EBD9BE" opacity=".45"/>
+          <ellipse cx="0" cy="0" rx="52" ry="18" fill="#FFFDF8"/>
+          <ellipse cx="30" cy="-10" rx="36" ry="20" fill="#FFFDF8"/>
+        </g>
+        <g transform="translate(880,116)">
+          <ellipse cx="0" cy="8" rx="42" ry="10" fill="#EBD9BE" opacity=".45"/>
+          <ellipse cx="0" cy="0" rx="44" ry="16" fill="#FFFDF8"/>
+          <ellipse cx="30" cy="-8" rx="30" ry="16" fill="#FFFDF8"/>
+        </g>
+      </g>
+
+      <!-- 远山 -->
+      <path d="M0 434 Q 150 400 306 426 T 630 420 T 950 430 T 1280 418 L1280 560 L0 560 Z" fill="url(#hillGrad)"/>
+      <path d="M0 452 Q 180 426 360 446 T 720 440 T 1080 452 T 1280 444" fill="none" stroke="#B7DDA9" stroke-width="4" opacity=".8"/>
+      <g transform="translate(72,430)">
+        <rect x="-7" y="8" width="14" height="36" rx="4" fill="#B98A5F" stroke="#5B4231" stroke-width="3"/>
+        <circle cx="0" cy="0" r="32" fill="#BFE3A8" stroke="#5B4231" stroke-width="4"/>
+        <circle cx="-20" cy="10" r="20" fill="#AEDB97" stroke="#5B4231" stroke-width="3"/>
+        <circle cx="21" cy="9" r="19" fill="#CDF0B9" stroke="#5B4231" stroke-width="3"/>
+        <circle cx="-8" cy="-12" r="9" fill="#DDF6CC" opacity=".9"/>
+      </g>
+
+      <!-- 草地 -->
       <path d="M0 472 Q 130 448 274 466 T 556 458 T 840 472 T 1110 456 T 1280 466 L1280 560 L0 560 Z" fill="url(#grassGrad)"/>
       <path d="M0 472 Q 130 448 274 466 T 556 458 T 840 472 T 1110 456 T 1280 466" fill="none" stroke="#8FBF8B" stroke-width="4" opacity=".55"/>
-      <g fill="#FFFDF8" opacity=".9">
-        <circle cx="120" cy="512" r="4"/><circle cx="128" cy="508" r="3"/><circle cx="112" cy="506" r="3"/>
-        <circle cx="720" cy="522" r="4"/><circle cx="728" cy="518" r="3"/><circle cx="712" cy="516" r="3"/>
-        <circle cx="1040" cy="504" r="4"/><circle cx="1048" cy="500" r="3"/><circle cx="1032" cy="498" r="3"/>
-      </g>
-      <g stroke="#8FBF8B" stroke-width="3" fill="none" opacity=".8">
+      <g stroke="#8FBF8B" stroke-width="3" fill="none" opacity=".7">
         <path d="M96 536 q4 -14 10 -18 M104 536 q1 -12 -4 -20"/>
         <path d="M1190 540 q4 -14 10 -18 M1198 540 q1 -12 -4 -20"/>
+        <path d="M640 512 q3 -10 8 -13 M647 512 q0 -8 -4 -13"/>
+        <path d="M860 530 q3 -10 8 -13 M867 530 q0 -8 -4 -13"/>
       </g>
-      <ellipse cx="380" cy="466" rx="66" ry="12" fill="#8FBF8B" opacity=".35"/>
+      <g opacity=".95">
+        <g transform="translate(690,505)">
+          <circle cx="-6" cy="0" r="5.5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="6" cy="0" r="5.5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="-6" r="5.5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="6" r="5.5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="0" r="4" fill="#FFCF5C" stroke="#5B4231" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(1032,498) scale(.9)">
+          <circle cx="-5" cy="0" r="5" fill="#FFD1DF" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="5" cy="0" r="5" fill="#FFD1DF" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="-5" r="5" fill="#FFD1DF" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="5" r="5" fill="#FFD1DF" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="0" r="3.5" fill="#FFCF5C" stroke="#5B4231" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(140,500) scale(.8)">
+          <circle cx="-5" cy="0" r="5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="5" cy="0" r="5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="-5" r="5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="5" r="5" fill="#FFFDF8" stroke="#5B4231" stroke-width="2"/>
+          <circle cx="0" cy="0" r="3.5" fill="#FFCF5C" stroke="#5B4231" stroke-width="1.5"/>
+        </g>
+      </g>
+
+      <!-- 野餐布 + 阴影 + 厨具 -->
+      <g transform="translate(380,505) rotate(-2)">
+        <path d="M-104 2 Q -108 20 -92 28 L92 28 Q108 20 104 2 Q 56 -8 0 -7 Q -56 -8 -104 2 Z" fill="url(#check)" fill-opacity=".78" stroke="#5B4231" stroke-width="3"/>
+        <path d="M-104 2 Q -56 -8 0 -7 Q 56 -8 104 2" fill="none" stroke="#FFF7E8" stroke-width="3" opacity=".9"/>
+        <path d="M-92 28 v6 M-60 28 v6 M-28 28 v6 M4 28 v6 M36 28 v6 M68 28 v6 M96 28 v6" stroke="#E8554A" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(272,474)">
+        <path d="M-26 4 h52 l-7 26 h-38 z" fill="#D9A566" stroke="#5B4231" stroke-width="3"/>
+        <path d="M-26 4 q26 -24 52 0" fill="none" stroke="#5B4231" stroke-width="3"/>
+        <path d="M-18 11 h36 M-19 18 h38 M-20 25 h40" stroke="#B98A5F" stroke-width="2"/>
+        <path d="M-30 4 h60" stroke="#5B4231" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <ellipse cx="380" cy="466" rx="66" ry="12" fill="#7FB27A" opacity=".3"/>
       <g stroke="#5B4231" stroke-width="3" fill="none" opacity=".85">
         <g transform="translate(1080,505) rotate(-8)">
           <rect x="-30" y="-5" width="60" height="10" rx="5" fill="#E8B76B"/>
           <rect x="-42" y="-4" width="12" height="8" rx="4" fill="#C97B4A"/>
           <rect x="30" y="-4" width="12" height="8" rx="4" fill="#C97B4A"/>
+          <path d="M-22 -1 h44" stroke="#C99A5C" stroke-width="2"/>
         </g>
         <g transform="translate(640,512) rotate(12)">
           <path d="M0 0 v-18" stroke-width="3.5"/>
           <path d="M0 -18 q-10 -16 0 -22 q10 6 0 22"/>
           <path d="M0 -18 q-16 -12 -8 -24 q12 4 8 24" opacity=".8"/>
         </g>
+        <g transform="translate(760,455) rotate(-10)" opacity=".8">
+          <path d="M-8 -10 h16 v34 h-16 z" fill="#D9DEE6"/>
+          <path d="M-8 24 v14 M-2 24 v16 M4 24 v16 M10 24 v14" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
       </g>
+      <g opacity=".8">
+        <g transform="translate(820,330) rotate(-8)">
+          <path d="M0 0 q-12 -14 -2 -20 q8 -4 2 20" fill="#FFB3C6" stroke="#5B4231" stroke-width="1.5"/>
+          <path d="M0 0 q12 -14 2 -20 q-8 -4 -2 20" fill="#FFC1D2" stroke="#5B4231" stroke-width="1.5"/>
+          <path d="M0 -2 v10" stroke="#5B4231" stroke-width="1.5"/>
+        </g>
+        <g transform="translate(300,380) rotate(10) scale(.8)">
+          <path d="M0 0 q-12 -14 -2 -20 q8 -4 2 20" fill="#FFD1DF" stroke="#5B4231" stroke-width="1.5"/>
+          <path d="M0 0 q12 -14 2 -20 q-8 -4 -2 20" fill="#FFE0E8" stroke="#5B4231" stroke-width="1.5"/>
+        </g>
+      </g>
+      <rect width="1280" height="560" fill="url(#vignette)" pointer-events="none"/>
     </g>
 
     <g id="groundSplats"></g>
@@ -235,56 +392,129 @@
       <path d="M0 -215 C -8 -180 8 -155 0 -110" fill="none" stroke="#E7C88E" stroke-width="8" stroke-linecap="round"/>
       <path d="M0 -110 Q -26 -80 -50 -46" fill="none" stroke="#E7C88E" stroke-width="7" stroke-linecap="round"/>
       <path d="M0 -110 Q 26 -80 50 -46" fill="none" stroke="#E7C88E" stroke-width="7" stroke-linecap="round"/>
+      <path d="M0 -215 C -8 -180 8 -155 0 -110" fill="none" stroke="#F5DFAE" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
       <circle cx="0" cy="-110" r="8" fill="#E7C88E" stroke="#B99A62" stroke-width="2"/>
       <g id="ratBody">
-        <path d="M-44 196 C -96 210 -108 158 -78 142" fill="none" stroke="#9AA8BF" stroke-width="12" stroke-linecap="round"/>
-        <path d="M-20 200 L -26 246" stroke="#9AA8BF" stroke-width="18" stroke-linecap="round"/>
-        <path d="M20 200 L 26 246" stroke="#9AA8BF" stroke-width="18" stroke-linecap="round"/>
-        <ellipse cx="-30" cy="250" rx="14" ry="8" fill="#9AA8BF" stroke="#5B4231" stroke-width="4"/>
-        <ellipse cx="30" cy="250" rx="14" ry="8" fill="#9AA8BF" stroke="#5B4231" stroke-width="4"/>
-        <path d="M-42 120 Q -84 30 -50 -46" fill="none" stroke="#9AA8BF" stroke-width="15" stroke-linecap="round"/>
-        <path d="M42 120 Q 84 30 50 -46" fill="none" stroke="#9AA8BF" stroke-width="15" stroke-linecap="round"/>
-        <ellipse cx="0" cy="150" rx="55" ry="65" fill="#B7C2D6" stroke="#5B4231" stroke-width="5"/>
-        <path d="M-32 108 L32 108 L38 202 Q0 214 -38 202 Z" fill="#FFF9EF" stroke="#5B4231" stroke-width="4"/>
+        <g id="ratTail" transform="translate(-44,196)">
+          <path d="M0 0 C -54 16 -70 -34 -38 -54" fill="none" stroke="#9AA8BF" stroke-width="13" stroke-linecap="round"/>
+          <path d="M0 0 C -54 16 -70 -34 -38 -54" fill="none" stroke="#CBD5E6" stroke-width="4" stroke-linecap="round" opacity=".45" transform="translate(-2,-4)"/>
+          <circle cx="-39" cy="-55" r="7" fill="#9AA8BF" stroke="#5B4231" stroke-width="3.5"/>
+        </g>
+
+        <g id="ratLegL" transform="translate(-20,200)">
+          <path d="M0 0 L -6 46" fill="none" stroke="#A9B6CC" stroke-width="18" stroke-linecap="round"/>
+          <ellipse cx="-10" cy="50" rx="15" ry="8" fill="#A9B6CC" stroke="#5B4231" stroke-width="4"/>
+          <ellipse cx="-13" cy="48" rx="5" ry="2.5" fill="#FFF" opacity=".35"/>
+          <path d="M-18 52 h9 M-4 52 h9" stroke="#5B4231" stroke-width="2" opacity=".45"/>
+        </g>
+        <g id="ratLegR" transform="translate(20,200)">
+          <path d="M0 0 L 6 46" fill="none" stroke="#A9B6CC" stroke-width="18" stroke-linecap="round"/>
+          <ellipse cx="10" cy="50" rx="15" ry="8" fill="#A9B6CC" stroke="#5B4231" stroke-width="4"/>
+          <ellipse cx="7" cy="48" rx="5" ry="2.5" fill="#FFF" opacity=".35"/>
+          <path d="M2 52 h9 M16 52 h9" stroke="#5B4231" stroke-width="2" opacity=".45"/>
+        </g>
+
+        <g id="ratArmL" transform="translate(-42,120)">
+          <path d="M0 0 Q -42 -90 -8 -166" fill="none" stroke="#A9B6CC" stroke-width="15" stroke-linecap="round"/>
+          <circle cx="-8" cy="-166" r="9" fill="#B7C2D6" stroke="#5B4231" stroke-width="4"/>
+          <path d="M-13 -170 q-5 5 -2 11" stroke="#5B4231" stroke-width="2" fill="none" opacity=".55"/>
+        </g>
+        <g id="ratArmR" transform="translate(42,120)">
+          <path d="M0 0 Q 42 -90 8 -166" fill="none" stroke="#A9B6CC" stroke-width="15" stroke-linecap="round"/>
+          <circle cx="8" cy="-166" r="9" fill="#B7C2D6" stroke="#5B4231" stroke-width="4"/>
+          <path d="M13 -170 q5 5 2 11" stroke="#5B4231" stroke-width="2" fill="none" opacity=".55"/>
+        </g>
+
+        <ellipse cx="0" cy="150" rx="55" ry="65" fill="url(#ratHeadFur)" stroke="#5B4231" stroke-width="5"/>
+        <ellipse cx="-12" cy="146" rx="34" ry="46" fill="#DCE4F0" opacity=".4" stroke="none"/>
+
+        <path d="M-32 108 L32 108 L38 202 Q0 214 -38 202 Z" fill="url(#apronGrad)" stroke="#5B4231" stroke-width="4"/>
         <path d="M-14 112 L-14 196 M14 112 L14 196" stroke="#E4D6C0" stroke-width="3"/>
-        <path d="M-27 103 Q0 118 27 103 L18 128 Q0 136 -18 128 Z" fill="#E8554A" stroke="#5B4231" stroke-width="4"/>
-        <circle cx="0" cy="58" r="48" fill="#B7C2D6" stroke="#5B4231" stroke-width="5"/>
-        <circle cx="-48" cy="32" r="20" fill="#B7C2D6" stroke="#5B4231" stroke-width="4"/>
-        <circle cx="48" cy="32" r="20" fill="#B7C2D6" stroke="#5B4231" stroke-width="4"/>
-        <circle cx="-48" cy="32" r="10" fill="#F2B6C6" stroke="none"/>
-        <circle cx="48" cy="32" r="10" fill="#F2B6C6" stroke="none"/>
-        <ellipse cx="0" cy="74" rx="24" ry="16" fill="#DDE4EE" stroke="#5B4231" stroke-width="3.5"/>
-        <circle cx="0" cy="66" r="6" fill="#4A3A2E" stroke="none"/>
-        <path d="M-24 72 L-44 66 M-24 80 L-46 82 M24 72 L44 66 M24 80 L46 82" stroke-width="2.5" stroke="#8A97AC"/>
-        <g id="faceNormal">
-          <circle cx="-16" cy="50" r="5" fill="#3A2E26"/>
-          <circle cx="16" cy="50" r="5" fill="#3A2E26"/>
-          <circle cx="-17.5" cy="48.5" r="1.6" fill="#fff"/>
-          <circle cx="14.5" cy="48.5" r="1.6" fill="#fff"/>
-          <path d="M-25 40 Q-18 36 -11 40" fill="none" stroke-width="2.5" stroke="#5B4231"/>
-          <path d="M11 40 Q18 36 25 40" fill="none" stroke-width="2.5" stroke="#5B4231"/>
-          <path d="M-8 84 Q0 90 8 84" fill="none" stroke-width="3" stroke="#5B4231"/>
-          <rect x="-8" y="84" width="6" height="7" rx="2" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
-          <rect x="2" y="84" width="6" height="7" rx="2" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+        <path d="M-17 148 h34 v32 h-34 z" fill="none" stroke="#E4D6C0" stroke-width="2.5"/>
+        <path d="M-32 108 L-40 98 M32 108 L40 98" stroke="#5B4231" stroke-width="3" stroke-linecap="round"/>
+
+        <path d="M-27 103 Q0 118 27 103 L18 128 Q0 136 -18 128 Z" fill="url(#scarfGrad)" stroke="#5B4231" stroke-width="4"/>
+        <circle cx="0" cy="122" r="5" fill="#C7433B" stroke="#5B4231" stroke-width="2"/>
+        <path d="M-4 127 l-7 20 M4 127 l7 20" stroke="#E8554A" stroke-width="6" stroke-linecap="round"/>
+
+        <g id="ratHead">
+          <g id="ratEarL">
+            <circle cx="-48" cy="32" r="20" fill="url(#ratHeadFur)" stroke="#5B4231" stroke-width="4"/>
+            <circle cx="-48" cy="32" r="10" fill="url(#earGrad)" stroke="none"/>
+            <path d="M-55 37 q7 5 14 0" stroke="#D98FA4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </g>
+          <g id="ratEarR">
+            <circle cx="48" cy="32" r="20" fill="url(#ratHeadFur)" stroke="#5B4231" stroke-width="4"/>
+            <circle cx="48" cy="32" r="10" fill="url(#earGrad)" stroke="none"/>
+            <path d="M41 37 q7 5 14 0" stroke="#D98FA4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <circle cx="0" cy="58" r="48" fill="url(#ratHeadFur)" stroke="#5B4231" stroke-width="5"/>
+          <path d="M-44 58 q-10 6 -8 14 q8 -4 12 -4" fill="#B7C2D6" stroke="#5B4231" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M44 58 q10 6 8 14 q-8 -4 -12 -4" fill="#B7C2D6" stroke="#5B4231" stroke-width="3" stroke-linejoin="round"/>
+
+          <ellipse cx="0" cy="74" rx="25" ry="17" fill="url(#snoutGrad)" stroke="#5B4231" stroke-width="3.5"/>
+          <circle cx="0" cy="65" r="6.5" fill="#4A3A2E"/>
+          <circle cx="-2" cy="63" r="2" fill="#9A8370"/>
+          <path d="M-25 72 L-46 66 M-25 80 L-48 82 M25 72 L46 66 M25 80 L48 82" stroke="#8A97AC" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="-16" cy="77" r="1.5" fill="#A9B6CC"/>
+          <circle cx="16" cy="77" r="1.5" fill="#A9B6CC"/>
+
+          <g id="faceNormal">
+            <path d="M-27 40 Q-18 34 -10 40" fill="none" stroke="#5B4231" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M10 40 Q18 34 27 40" fill="none" stroke="#5B4231" stroke-width="2.6" stroke-linecap="round"/>
+            <ellipse cx="-16" cy="50" rx="7" ry="8" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+            <ellipse cx="16" cy="50" rx="7" ry="8" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+            <circle cx="-15" cy="51" r="4.5" fill="#3A2E26"/>
+            <circle cx="17" cy="51" r="4.5" fill="#3A2E26"/>
+            <circle cx="-16.5" cy="49.5" r="1.6" fill="#fff"/>
+            <circle cx="15.5" cy="49.5" r="1.6" fill="#fff"/>
+            <path d="M-8 84 Q0 90 8 84" fill="none" stroke="#5B4231" stroke-width="3" stroke-linecap="round"/>
+            <rect x="-8" y="84" width="6" height="7" rx="2" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+            <rect x="2" y="84" width="6" height="7" rx="2" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+          </g>
+
+          <g id="faceHit" style="display:none">
+            <path d="M-22 45 l11 11 M-11 45 l-11 11" stroke-width="4" stroke="#5B4231" fill="none" stroke-linecap="round"/>
+            <path d="M11 45 l11 11 M22 45 l-11 11" stroke-width="4" stroke="#5B4231" fill="none" stroke-linecap="round"/>
+            <ellipse cx="0" cy="86" rx="12" ry="10" fill="#7A3B3B" stroke="#5B4231" stroke-width="3"/>
+            <ellipse cx="0" cy="91" rx="6" ry="4" fill="#E88A9A" stroke="none"/>
+            <rect x="-9" y="74" width="6" height="6" rx="2" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+            <rect x="3" y="74" width="6" height="6" rx="2" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+          </g>
+
+          <g id="faceDizzy" style="display:none">
+            <path d="M-23 50 a7 7 0 1 0 14 0 a5 5 0 1 1 -10 0" fill="none" stroke-width="2.6" stroke="#5B4231"/>
+            <path d="M9 50 a7 7 0 1 1 14 0 a5 5 0 1 0 -10 0" fill="none" stroke-width="2.6" stroke="#5B4231"/>
+            <path d="M-9 86 q9 -7 18 0 q-9 7 -18 0" fill="none" stroke="#5B4231" stroke-width="2.6"/>
+          </g>
+
+          <g id="facePain" style="display:none">
+            <path d="M-24 48 q7 -8 14 0" fill="none" stroke="#5B4231" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M10 48 q7 -8 14 0" fill="none" stroke="#5B4231" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M-11 88 q5 6 11 0 q6 -6 11 0" fill="none" stroke="#5B4231" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-30 58 q3 8 0 13 M30 58 q-3 8 0 13" stroke="#6FB6E8" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+          </g>
+
+          <g id="faceShock" style="display:none">
+            <circle cx="-16" cy="49" r="9" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+            <circle cx="16" cy="49" r="9" fill="#FFFDF6" stroke="#5B4231" stroke-width="2"/>
+            <circle cx="-15" cy="50" r="3.2" fill="#3A2E26"/>
+            <circle cx="17" cy="50" r="3.2" fill="#3A2E26"/>
+            <ellipse cx="0" cy="88" rx="8" ry="10" fill="#7A3B3B" stroke="#5B4231" stroke-width="3"/>
+          </g>
+
+          <g transform="translate(0,-8)">
+            <g id="ratHat">
+              <path d="M-38 8 Q-56 -10 -36 -28 Q-40 -54 -10 -54 Q-2 -72 22 -56 Q48 -58 46 -32 Q64 -14 42 6 Z" fill="url(#hatGrad)" stroke="#5B4231" stroke-width="4.5"/>
+              <path d="M-30 0 Q-20 -16 -6 -10 M8 -26 Q18 -34 30 -26" stroke="#E6DAC8" stroke-width="3" fill="none" opacity=".9" stroke-linecap="round"/>
+              <rect x="-38" y="2" width="76" height="20" rx="7" fill="url(#hatGrad)" stroke="#5B4231" stroke-width="4.5"/>
+              <path d="M-30 14 L30 14" stroke="#E3D6C2" stroke-width="3"/>
+              <path d="M-30 7 L30 7" stroke="#FFFFFF" stroke-width="2" opacity=".85"/>
+            </g>
+          </g>
         </g>
-        <g id="faceHit" style="display:none">
-          <path d="M-21 45 l10 10 M-11 45 l-10 10" stroke-width="4" stroke="#5B4231" fill="none"/>
-          <path d="M11 45 l10 10 M21 45 l-10 10" stroke-width="4" stroke="#5B4231" fill="none"/>
-          <ellipse cx="0" cy="86" rx="11" ry="9" fill="#7A3B3B" stroke="#5B4231" stroke-width="3"/>
-          <ellipse cx="0" cy="90" rx="6" ry="4" fill="#E88A9A" stroke="none"/>
-        </g>
-        <g id="faceDizzy" style="display:none">
-          <path d="M-22 50 a6 6 0 1 0 12 0 a4 4 0 1 1 -8 0" fill="none" stroke-width="2.6" stroke="#5B4231"/>
-          <path d="M10 50 a6 6 0 1 1 12 0 a4 4 0 1 0 -8 0" fill="none" stroke-width="2.6" stroke="#5B4231"/>
-          <path d="M-7 86 q7 -6 14 0 q-7 6 -14 0" fill="none" stroke-width="2.6" stroke="#5B4231"/>
-        </g>
-        <g transform="translate(0,-8)">
-          <path d="M-38 8 Q-54 -12 -34 -28 Q-38 -52 -10 -52 Q-2 -68 20 -54 Q46 -56 44 -32 Q62 -16 42 6 Z" fill="#FFFDF6" stroke="#5B4231" stroke-width="4.5"/>
-          <rect x="-38" y="2" width="76" height="20" rx="7" fill="#FFFDF6" stroke="#5B4231" stroke-width="4.5"/>
-          <path d="M-30 14 L30 14" stroke="#E3D6C2" stroke-width="3"/>
-        </g>
-        <circle cx="-50" cy="-46" r="9" fill="#B7C2D6" stroke="#5B4231" stroke-width="4"/>
-        <circle cx="50" cy="-46" r="9" fill="#B7C2D6" stroke="#5B4231" stroke-width="4"/>
+
         <g id="ratSplats" clip-path="url(#ratClip)"></g>
         <g id="ratFlash" clip-path="url(#ratClip)" opacity="0"><rect x="-110" y="-20" width="220" height="300" fill="#FFFFFF"/></g>
         <g id="ratTint" clip-path="url(#ratClip)" opacity="0"><rect x="-110" y="-20" width="220" height="300" fill="#7ED957"/></g>
@@ -293,42 +523,70 @@
 
     <!-- 小公主（攻击者） -->
     <g id="princessGroup" transform="translate(960,475)">
-      <ellipse cx="0" cy="6" rx="72" ry="14" fill="#8FBF8B" opacity=".35"/>
-      <path d="M-42 -196 Q-76 -150 -54 -110 Q-46 -88 -26 -96 L-34 -150 Z" fill="#8B5A3C" stroke="#5B4231" stroke-width="4"/>
-      <path d="M42 -196 Q70 -160 56 -124 Q48 -100 32 -104 L38 -150 Z" fill="#8B5A3C" stroke="#5B4231" stroke-width="4"/>
-      <path d="M-22 -132 Q0 -140 22 -132 L60 -10 Q0 14 -60 -10 Z" fill="#FF9FB4" stroke="#5B4231" stroke-width="5"/>
-      <path d="M-26 -124 Q0 -130 26 -124 L36 -14 Q0 2 -36 -14 Z" fill="#FFF6EC" stroke="#5B4231" stroke-width="4"/>
-      <circle cx="-14" cy="-72" r="3" fill="#FFC1D2"/>
-      <circle cx="10" cy="-54" r="3" fill="#FFC1D2"/>
-      <circle cx="-2" cy="-34" r="3" fill="#FFC1D2"/>
-      <path d="M-22 -152 Q0 -160 22 -152 L20 -128 Q0 -134 -20 -128 Z" fill="#FF9FB4" stroke="#5B4231" stroke-width="4"/>
-      <ellipse cx="-20" cy="-4" rx="15" ry="8" fill="#8B5A3C" stroke="#5B4231" stroke-width="4"/>
-      <ellipse cx="20" cy="-4" rx="15" ry="8" fill="#8B5A3C" stroke="#5B4231" stroke-width="4"/>
+      <ellipse cx="0" cy="6" rx="74" ry="14" fill="#7FB27A" opacity=".28"/>
+
+      <path d="M-42 -196 Q-82 -150 -56 -104 Q-48 -82 -24 -92 L-32 -150 Z" fill="url(#hairGrad)" stroke="#5B4231" stroke-width="4"/>
+      <path d="M42 -196 Q76 -158 58 -118 Q50 -96 30 -102 L38 -150 Z" fill="url(#hairGrad)" stroke="#5B4231" stroke-width="4"/>
+      <path d="M-50 -160 Q-62 -130 -48 -110 M52 -158 Q62 -132 50 -112" stroke="#C08A63" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>
+
       <g transform="translate(24,-148)">
-        <path d="M0 0 Q26 12 34 34" fill="none" stroke="#FFD9C8" stroke-width="13" stroke-linecap="round"/>
-        <circle cx="35" cy="38" r="9" fill="#FFD9C8" stroke="#5B4231" stroke-width="4"/>
+        <path d="M0 0 Q28 14 34 36" fill="none" stroke="#FFDCCB" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="35" cy="40" r="9" fill="#FFDCCB" stroke="#5B4231" stroke-width="4"/>
+        <path d="M-2 -6 Q10 4 16 12" fill="none" stroke="#FF9FB4" stroke-width="13" stroke-linecap="round"/>
+        <path d="M-2 -10 Q8 -2 14 6" fill="none" stroke="#FFF6EC" stroke-width="3" opacity=".85" stroke-linecap="round"/>
       </g>
-      <circle cx="0" cy="-190" r="44" fill="#FFE0CF" stroke="#5B4231" stroke-width="5"/>
-      <path d="M-44 -198 Q-52 -240 -10 -236 Q22 -234 40 -210 Q22 -222 4 -214 Q-12 -206 -22 -220 Q-36 -208 -30 -188 Z" fill="#8B5A3C" stroke="#5B4231" stroke-width="4"/>
-      <path d="M-26 -228 L-26 -250 L-13 -238 L0 -258 L13 -238 L26 -250 L26 -228 Z" fill="#FFCF5C" stroke="#5B4231" stroke-width="4"/>
-      <circle cx="0" cy="-240" r="3.5" fill="#E8554A"/>
-      <circle cx="-16" cy="-235" r="2.5" fill="#6FBF73"/>
-      <circle cx="16" cy="-235" r="2.5" fill="#6FBF73"/>
-      <circle cx="-15" cy="-194" r="5" fill="#3A2E26"/>
-      <circle cx="9" cy="-194" r="5" fill="#3A2E26"/>
-      <circle cx="-16.5" cy="-195.5" r="1.6" fill="#fff"/>
-      <circle cx="7.5" cy="-195.5" r="1.6" fill="#fff"/>
-      <path d="M-22 -206 Q-15 -210 -8 -206" fill="none" stroke="#8B5A3C" stroke-width="2.5"/>
-      <path d="M2 -206 Q9 -210 16 -206" fill="none" stroke="#8B5A3C" stroke-width="2.5"/>
-      <path d="M-21 -197 l-6 -2 M17 -197 l6 -2" stroke="#5B4231" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <path d="M-14 -60 Q-20 -32 -16 -16 M16 -60 Q22 -32 18 -16" stroke="#F27C96" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
-      <ellipse cx="-30" cy="-178" rx="7" ry="4" fill="#FFB3B3" opacity=".8"/>
-      <ellipse cx="24" cy="-178" rx="7" ry="4" fill="#FFB3B3" opacity=".8"/>
-      <path d="M-8 -176 Q-2 -170 4 -176" fill="none" stroke="#5B4231" stroke-width="3"/>
+
+      <path d="M-24 -132 Q0 -142 24 -132 L64 -12 Q38 6 0 8 Q-38 6 -64 -12 Z" fill="url(#dressGrad)" stroke="#5B4231" stroke-width="5"/>
+      <path d="M-24 -132 Q0 -142 24 -132 L56 -20 Q0 2 -56 -20 Z" fill="url(#apronWhite)" stroke="#5B4231" stroke-width="4"/>
+      <path d="M-56 -20 Q0 2 56 -20" fill="none" stroke="#F2C7D3" stroke-width="5" stroke-dasharray="2 8" stroke-linecap="round"/>
+      <path d="M-64 -12 Q-34 12 0 14 Q34 12 64 -12" fill="none" stroke="#FFF6EC" stroke-width="4" opacity=".7"/>
+      <path d="M-16 -56 Q-21 -30 -14 -6 M16 -56 Q21 -30 15 -6" stroke="#F27C9A" stroke-width="3" fill="none" opacity=".7" stroke-linecap="round"/>
+      <circle cx="-30" cy="-40" r="3" fill="#FFD1DF"/>
+      <circle cx="28" cy="-34" r="3" fill="#FFD1DF"/>
+      <circle cx="-8" cy="-20" r="2.5" fill="#FFD1DF"/>
+      <circle cx="40" cy="-62" r="2.5" fill="#FFD1DF"/>
+
+      <path d="M-24 -136 Q0 -144 24 -136 L22 -124 Q0 -130 -22 -124 Z" fill="#F26D8C" stroke="#5B4231" stroke-width="3.5"/>
+      <path d="M-22 -154 Q0 -162 22 -154 L20 -132 Q0 -138 -20 -132 Z" fill="url(#dressGrad)" stroke="#5B4231" stroke-width="4"/>
+
+      <g>
+        <path d="M-31 -8 Q-32 1 -19 3 Q-8 4 -7 -3 L-8 -10 Q-19 -13 -28 -10 Z" fill="url(#shoeGrad)" stroke="#5B4231" stroke-width="4"/>
+        <path d="M-27 -9 h16" stroke="#FFCF5C" stroke-width="2.5"/>
+        <path d="M-4 -5 h-14" stroke="#3A2E26" stroke-width="4" stroke-linecap="round"/>
+        <path d="M29 -8 Q30 1 17 3 Q6 4 5 -3 L6 -10 Q17 -13 26 -10 Z" fill="url(#shoeGrad)" stroke="#5B4231" stroke-width="4"/>
+        <path d="M25 -9 h-16" stroke="#FFCF5C" stroke-width="2.5"/>
+        <path d="M2 -5 h14" stroke="#3A2E26" stroke-width="4" stroke-linecap="round"/>
+      </g>
+
+      <circle cx="0" cy="-190" r="44" fill="url(#skinGrad)" stroke="#5B4231" stroke-width="5"/>
+      <path d="M-44 -196 Q-52 -242 -8 -238 Q26 -236 42 -208 Q24 -222 2 -214 Q-14 -206 -24 -220 Q-38 -208 -30 -188 Z" fill="url(#hairGrad)" stroke="#5B4231" stroke-width="4"/>
+      <path d="M-30 -212 Q-14 -228 4 -226" stroke="#C08A63" stroke-width="4" fill="none" opacity=".55" stroke-linecap="round"/>
+      <circle cx="-40" cy="-176" r="4" fill="url(#goldGrad)" stroke="#5B4231" stroke-width="2"/>
+      <circle cx="40" cy="-176" r="4" fill="url(#goldGrad)" stroke="#5B4231" stroke-width="2"/>
+
+      <path d="M-27 -228 L-27 -252 L-13 -239 L0 -260 L13 -239 L27 -252 L27 -228 Z" fill="url(#goldGrad)" stroke="#5B4231" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M-27 -234 h54" stroke="#E0A93B" stroke-width="2"/>
+      <circle cx="0" cy="-242" r="4" fill="#E8554A" stroke="#5B4231" stroke-width="1.5"/>
+      <circle cx="-16" cy="-236" r="3" fill="#6FBF73" stroke="#5B4231" stroke-width="1.5"/>
+      <circle cx="16" cy="-236" r="3" fill="#6FBF73" stroke="#5B4231" stroke-width="1.5"/>
+      <circle cx="-20" cy="-248" r="1.6" fill="#FFF" opacity=".9"/>
+
+      <ellipse cx="-15" cy="-194" rx="6" ry="7" fill="#3A2E26"/>
+      <ellipse cx="9" cy="-194" rx="6" ry="7" fill="#3A2E26"/>
+      <circle cx="-16.5" cy="-196" r="2" fill="#fff"/>
+      <circle cx="7.5" cy="-196" r="2" fill="#fff"/>
+      <path d="M-22 -206 Q-15 -211 -8 -206" fill="none" stroke="#7A4A2F" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M2 -206 Q9 -211 16 -206" fill="none" stroke="#7A4A2F" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-21 -197 l-7 -2 M17 -197 l7 -2" stroke="#5B4231" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="-30" cy="-178" rx="8" ry="5" fill="url(#blushGrad)"/>
+      <ellipse cx="24" cy="-178" rx="8" ry="5" fill="url(#blushGrad)"/>
+      <circle cx="-3" cy="-183" r="1.5" fill="#E8A98F" opacity=".8"/>
+      <path d="M-7 -176 Q-1 -170 5 -176" fill="none" stroke="#5B4231" stroke-width="3" stroke-linecap="round"/>
+
       <g transform="translate(-24,-150)">
         <g id="armSwing">
-          <path d="M0 0 Q-30 10 -52 22" fill="none" stroke="#FFD9C8" stroke-width="13" stroke-linecap="round"/>
-          <circle cx="-54" cy="24" r="9" fill="#FFD9C8" stroke="#5B4231" stroke-width="4"/>
+          <path d="M0 0 Q-30 10 -52 22" fill="none" stroke="#FFDCCB" stroke-width="13" stroke-linecap="round"/>
+          <circle cx="-54" cy="24" r="9" fill="#FFDCCB" stroke="#5B4231" stroke-width="4"/>
           <path d="M-4 -2 Q-16 0 -26 8" fill="none" stroke="#FF9FB4" stroke-width="14" stroke-linecap="round"/>
           <path d="M-2 -8 Q-14 -4 -22 2" fill="none" stroke="#FFF6EC" stroke-width="4" stroke-linecap="round"/>
         </g>
@@ -393,6 +651,7 @@ const rand = (a,b) => a + Math.random()*(b-a);
 const pick = a => a[Math.floor(Math.random()*a.length)];
 const lerp = (a,b,t) => a + (b-a)*t;
 const easeOut = t => 1 - Math.pow(1-t,3);
+const easeIn = t => t*t*t;
 const easeInOut = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
@@ -478,6 +737,7 @@ const Sfx = {
   squish(){ this.noise(.25,.32,'lowpass',600,150); this.osc('sine',95,.18,.18,40); },
   fizz(){ this.noise(.7,.18,'highpass',2400); },
   clang(){ this.osc('square',760,.12,.18,420); this.noise(.18,.2,'bandpass',2200,900); },
+  crack(){ this.noise(.09,.45,'highpass',1600); this.osc('square',950,.09,.22,260); },
   pop(){ this.osc('sine',520,.07,.22,900); },
   boom(){ this.noise(.55,.45,'lowpass',700,50); this.osc('sine',70,.5,.3,30); },
   fanfare(){ [523,659,784,1047].forEach((f,i)=>this.osc('triangle',f,.3,.13,null,i*.09)); },
@@ -570,6 +830,13 @@ const FOOD_ART = {
     <path d="M15 4 h14" stroke-width="5"/>
     <circle cx="0" cy="4" r="10" fill="#FFF4E6" stroke="none"/>
     <circle cx="0" cy="2" r="5" fill="#FFCF5C" stroke="none"/>`,
+  rollingpin: `
+    <g transform="rotate(-20)">
+      <rect x="-26" y="-6" width="52" height="12" rx="6" fill="#E8B76B"/>
+      <rect x="-38" y="-5" width="12" height="10" rx="5" fill="#C97B4A"/>
+      <rect x="26" y="-5" width="12" height="10" rx="5" fill="#C97B4A"/>
+      <path d="M-16 -1 h32" stroke="#C99A5C" stroke-width="2"/>
+    </g>`,
   egg: `
     <path d="M-18 2 q-4 -16 10 -16 q8 0 12 8 q8 0 10 8 q2 10 -10 10 q-12 0 -22 -10 Z" fill="#FFFDF6"/>
     <circle cx="0" cy="2" r="6" fill="#FFCF5C"/>`,
@@ -597,6 +864,8 @@ const FOODS = {
   pan:{splat:'#6E6A66', quips:['哐当！','厨房事故！']},
   egg:{splat:'#FFD24A', quips:['啪！']},
   chicken:{splat:'#C97B4A', quips:['上菜啦！','大吉大利！']},
+  rollingpin:{splat:'#E8B76B', quips:['咚咚咚！','擀面杖暴击！']},
+  whip:{splat:'#F2D98B', quips:['啪！','鞭长莫及！']},
   durian:{splat:'#C8B23A', quips:['这什么味？！','生化武器！']}
 };
 
@@ -616,13 +885,26 @@ const ratGroup = $('#ratGroup');
 const ratSplats = $('#ratSplats');
 const ratTint = $('#ratTint');
 const ratFlash = $('#ratFlash');
+const ratBodyEl = $('#ratBody');
+const ratHead = $('#ratHead');
+const ratHat = $('#ratHat');
+const ratLegL = $('#ratLegL');
+const ratLegR = $('#ratLegR');
+const ratArmL = $('#ratArmL');
+const ratArmR = $('#ratArmR');
+const ratTail = $('#ratTail');
 const princessGroup = $('#princessGroup');
 const armSwing = $('#armSwing');
-const faces = { normal:$('#faceNormal'), hit:$('#faceHit'), dizzy:$('#faceDizzy') };
+const faces = {
+  normal:$('#faceNormal'), hit:$('#faceHit'), dizzy:$('#faceDizzy'),
+  pain:$('#facePain'), shock:$('#faceShock')
+};
 
 const state = {
   name:'', muted:false, lock:false,
-  theta:0, omega:0, faceTimer:null, tintTimer:null, shakeTimer:null
+  theta:0, omega:0, px:0, py:0, lean:0,
+  heat:0, heatTimer:null, faceTimer:null, tintTimer:null, shakeTimer:null,
+  squashToken:0
 };
 
 const RAT = { x:380, y:165 };
@@ -637,6 +919,177 @@ function ratTarget(){
 }
 function kick(power){
   state.omega -= (2.4 + Math.random()*1.8) * (power || 1);
+}
+
+/* ============ 鼠王受击反应 ============ */
+const RAT_BASE = {
+  legL:'translate(-20,200)',
+  legR:'translate(20,200)',
+  armL:'translate(-42,120)',
+  armR:'translate(42,120)',
+  tail:'translate(-44,196)'
+};
+function ratSquash(sx, sy, dur){
+  const token = ++state.squashToken;
+  return tween(dur || 180, (p)=>{
+    if(token !== state.squashToken) return;
+    const e = Math.sin(p*Math.PI);
+    ratBodyEl.setAttribute('transform', 'scale(' + (1 + (sx-1)*e) + ',' + (1 + (sy-1)*e) + ')');
+    if(p >= 1) ratBodyEl.setAttribute('transform','');
+  });
+}
+function ratHeadBob(angle, dy, dur){
+  return tween(dur || 240, (p)=>{
+    const e = Math.sin(p*Math.PI);
+    ratHead.setAttribute('transform',
+      'translate(0,' + ((dy||0)*e) + ') rotate(' + (angle*e) + ' 0 58)');
+    if(p >= 1) ratHead.setAttribute('transform','');
+  });
+}
+function ratHatPop(power){
+  const fly = 26 + 30*(power || 1);
+  return tween(430, (p)=>{
+    const e = p < .45 ? easeOut(p/.45) : 1 - easeInOut((p-.45)/.55);
+    ratHat.setAttribute('transform',
+      'translate(0,' + (-fly*e) + ') rotate(' + ((16*(power||1))*e) + ')');
+    if(p >= 1) ratHat.setAttribute('transform','');
+  });
+}
+function ratLegKick(dir){
+  tween(300, (p)=>{
+    const e = Math.sin(p*Math.PI);
+    ratLegL.setAttribute('transform', RAT_BASE.legL + ' rotate(' + (-20*e*(dir||1)) + ')');
+    ratLegR.setAttribute('transform', RAT_BASE.legR + ' rotate(' + (16*e*(dir||1)) + ')');
+    if(p >= 1){
+      ratLegL.setAttribute('transform', RAT_BASE.legL);
+      ratLegR.setAttribute('transform', RAT_BASE.legR);
+    }
+  });
+}
+function ratArmFlail(power){
+  tween(320, (p)=>{
+    const e = Math.sin(p*Math.PI);
+    ratArmL.setAttribute('transform', RAT_BASE.armL + ' rotate(' + (14*e*(power||1)) + ')');
+    ratArmR.setAttribute('transform', RAT_BASE.armR + ' rotate(' + (-12*e*(power||1)) + ')');
+    if(p >= 1){
+      ratArmL.setAttribute('transform', RAT_BASE.armL);
+      ratArmR.setAttribute('transform', RAT_BASE.armR);
+    }
+  });
+}
+function ratTailWag(power){
+  tween(420, (p)=>{
+    const e = Math.sin(p*Math.PI);
+    ratTail.setAttribute('transform', RAT_BASE.tail + ' rotate(' + (16*Math.sin(p*Math.PI*3)*e*(power||1)) + ')');
+    if(p >= 1) ratTail.setAttribute('transform', RAT_BASE.tail);
+  });
+}
+function ratTears(){
+  [[-16,50],[16,50]].forEach(([ex,ey])=>{
+    for(let i=0;i<3;i++){
+      const base = ratScene(ex, ey);
+      const g = svgEl('g');
+      const drop = svgEl('ellipse', { cx:0, cy:0, rx:3.4, ry:5, fill:'#8FD3F4', stroke:'#5B4231', 'stroke-width':1.2 });
+      g.appendChild(drop);
+      fx.appendChild(g);
+      const dx = rand(-24,24), dy = rand(46,80);
+      tween(620 + Math.random()*320, (p)=>{
+        g.setAttribute('transform', 'translate(' + (base.x + dx*p) + ',' + (base.y + dy*p) + ')');
+        drop.setAttribute('opacity', String(1-p));
+      }).then(()=>g.remove());
+    }
+  });
+}
+function starsOrbit(){
+  const center = ratScene(0, 8);
+  for(let i=0;i<3;i++){
+    const g = svgEl('g');
+    const s = svgEl('path', {
+      d:'M0 -9 L2.5 -3 L9 -2.5 L4 1.5 L5.5 8 L0 4.5 L-5.5 8 L-4 1.5 L-9 -2.5 L-2.5 -3 Z',
+      fill:'#FFCF5C', stroke:'#5B4231', 'stroke-width':1.5
+    });
+    g.appendChild(s);
+    fx.appendChild(g);
+    const a0 = i*Math.PI*2/3;
+    tween(1300, (p)=>{
+      const a = a0 + p*Math.PI*2;
+      g.setAttribute('transform',
+        'translate(' + (center.x + Math.cos(a)*58) + ',' + (center.y + Math.sin(a)*24) + ') scale(' + (.75 + .3*Math.sin(p*Math.PI*3)) + ')');
+      g.setAttribute('opacity', String(p > .75 ? 1 - (p-.75)/.25 : 1));
+    }).then(()=>g.remove());
+  }
+}
+function ratSteam(){
+  [[-48,18],[48,18]].forEach(([ex,ey], side)=>{
+    for(let k=0;k<3;k++){
+      const base = ratScene(ex, ey);
+      const g = svgEl('g');
+      const c = svgEl('circle', { cx:0, cy:0, r: rand(6,11), fill:'#FFF3E0', opacity:.7 });
+      g.appendChild(c);
+      fx.appendChild(g);
+      tween(700 + k*140, (p)=>{
+        g.setAttribute('transform', 'translate(' + (base.x + (side?1:-1)*12*p) + ',' + (base.y - 52*p) + ')');
+        c.setAttribute('r', String(8 + 12*p));
+        c.setAttribute('opacity', String(.7*(1-p)));
+      }).then(()=>g.remove());
+    }
+  });
+}
+let lastSayAt = 0;
+function ratSay(text){
+  const now = performance.now();
+  if(now - lastSayAt < 1000) return;
+  lastSayAt = now;
+  const base = ratScene(0, 10);
+  const g = svgEl('g', { transform:'translate(' + base.x + ',' + (base.y - 62) + ')' });
+  const w = Math.max(80, text.length*22 + 26);
+  g.innerHTML =
+    '<rect x="' + (-w/2) + '" y="-30" width="' + w + '" height="40" rx="16" fill="#FFFDF6" stroke="#5B4231" stroke-width="3"/>' +
+    '<path d="M-8 8 l-6 14 l16 -12" fill="#FFFDF6" stroke="#5B4231" stroke-width="3"/>' +
+    '<text x="0" y="-3" text-anchor="middle" font-size="20" font-family="KaiTi, STKaiti, serif" font-weight="700" fill="#5B4231">' + text + '</text>';
+  fx.appendChild(g);
+  tween(1150, (p)=>{
+    g.setAttribute('transform', 'translate(' + base.x + ',' + (base.y - 62 - 14*easeOut(p)) + ')');
+    g.setAttribute('opacity', String(p < .72 ? 1 : 1 - (p-.72)/.28));
+  }).then(()=>g.remove());
+}
+function addWelt(){
+  const lx = rand(-30,30), ly = rand(60,180);
+  const g = svgEl('g', { transform:'translate(' + lx + ',' + ly + ') rotate(' + rand(-32,32) + ')' });
+  g.innerHTML =
+    '<path d="M-26 0 Q0 -11 26 0" fill="none" stroke="#D9482B" stroke-width="5" stroke-linecap="round" opacity=".92"/>' +
+    '<circle cx="-21" cy="-2" r="2.2" fill="#D9482B"/>' +
+    '<circle cx="21" cy="-2" r="2.2" fill="#D9482B"/>';
+  ratSplats.appendChild(g);
+  while(ratSplats.children.length > 42) ratSplats.removeChild(ratSplats.firstChild);
+}
+function hitReaction(type, power, opts){
+  opts = opts || {};
+  power = power || 1;
+  state.heat = Math.min(9, state.heat + 1);
+  clearTimeout(state.heatTimer);
+  state.heatTimer = setTimeout(()=>{ state.heat = 0; }, 2600);
+
+  ratSquash(1 + .07*power, 1 - .09*power);
+  ratHeadBob((Math.random()<.5 ? -1 : 1) * (9 + 5*power), -5*power);
+  ratArmFlail(power);
+  ratTailWag(power);
+  if(Math.random() < .55) ratLegKick(Math.random()<.5 ? -1 : 1);
+  if(power >= 1.3 || state.heat >= 3) ratHatPop(power);
+  if(power >= 1.5) ratTears();
+  if(state.heat >= 3) starsOrbit();
+  if(type === 'hotpot') ratSteam();
+
+  if(state.heat >= 4) setFace('dizzy', 1500);
+  else if(power >= 1.6) setFace('shock', 650);
+  else if(power >= 1.2) setFace('pain', 760);
+  else setFace(Math.random()<.5 ? 'hit' : 'pain', 620);
+
+  const lines = state.heat >= 5
+    ? ['别打了！','我错了！','救命啊！','轻点轻点！']
+    : ['哎哟！','咝——','我的帽子！','怎么又是我！'];
+  if(Math.random() < (state.heat >= 4 ? .6 : .28)) ratSay(pick(lines));
+  if(state.heat >= 6 && Math.random() < .5) ratSquash(1.14, .84);
 }
 
 /* ============ 表情 / 抖动 / 染色 ============ */
@@ -769,10 +1222,10 @@ function impact(type, pt, opts){
   flashRat();
   if(Math.random() < 0.45) addGroundSplat(type);
   burst(pt, food.splat, opts.count || 10, opts.power || 1);
-  popText(opts.quip || pick(food.quips), pt);
+  if(opts.quip !== '') popText(opts.quip || pick(food.quips), pt);
   Sfx.hit(type);
   kick(opts.power || 1);
-  setFace(opts.face || 'hit', opts.faceMs || 650);
+  hitReaction(type, opts.power || 1, opts);
   shake(opts.shake || 5);
   if(opts.scream !== false && Math.random() < 0.55) setTimeout(()=>Sfx.scream(), 100 + Math.random()*150);
 }
@@ -796,6 +1249,63 @@ function armPull(dur){
       : lerp(-38, 0, easeInOut((p-.6)/.4));
     armSwing.setAttribute('transform', 'rotate(' + a + ')');
   });
+}
+
+/* ============ 公主走位 / 拿武器 ============ */
+function dustPuff(x, y){
+  const g = svgEl('g');
+  const c = svgEl('circle', { cx:0, cy:0, r: rand(5,10), fill:'#EFDDBB', opacity:.65 });
+  g.appendChild(c);
+  fx.appendChild(g);
+  const dx = rand(-34,34), dy = rand(-16,-4);
+  tween(380, (p)=>{
+    g.setAttribute('transform', 'translate(' + (x + dx*p) + ',' + (y + dy*p) + ')');
+    c.setAttribute('opacity', String(.65*(1-p)));
+  }).then(()=>g.remove());
+}
+function dashDust(){
+  for(let i=0;i<5;i++){
+    setTimeout(()=>dustPuff(960 + state.px + rand(-18,18), 472), i*45);
+  }
+}
+function dashLines(){
+  for(let i=0;i<5;i++){
+    const y = rand(330,470);
+    const g = svgEl('g');
+    const ln = svgEl('line', { x1:0, y1:0, x2: rand(28,64), y2:0, stroke:'#E8D5AE', 'stroke-width': rand(2,5), 'stroke-linecap':'round', opacity:.7 });
+    g.appendChild(ln);
+    fx.appendChild(g);
+    const x = 960 + state.px + rand(30,90);
+    const dir = state.px < 0 ? 1 : -1;
+    tween(280, (p)=>{
+      g.setAttribute('transform', 'translate(' + (x + dir*50*p) + ',' + y + ') scale(' + dir + ',1)');
+      g.setAttribute('opacity', String(.7*(1-p)));
+    }).then(()=>g.remove());
+  }
+}
+async function leanTo(deg, dur){
+  const from = state.lean;
+  await tween(dur || 180, (p)=>{ state.lean = lerp(from, deg, easeOut(p)); });
+}
+async function dashTo(dx, dur){
+  Sfx.whoosh();
+  dashDust();
+  dashLines();
+  const from = state.px;
+  await tween(dur || 300, (p)=>{ state.px = lerp(from, dx, easeOut(p)); });
+  dashDust();
+}
+async function dashHome(dur){
+  const from = state.px;
+  dashLines();
+  await tween(dur || 260, (p)=>{ state.px = lerp(from, 0, easeInOut(p)); });
+  dashDust();
+}
+function equipWeapon(type, scale, rot){
+  const g = svgEl('g', { id:'weapon', transform:'translate(-54,24) rotate(' + (rot||0) + ') scale(' + (scale||1.6) + ')' });
+  g.innerHTML = foodMarkup(type);
+  armSwing.appendChild(g);
+  return g;
 }
 
 /* ============ 投掷 ============ */
@@ -923,6 +1433,8 @@ function soupStream(){
     kick(1.2);
     shake(6);
     popText('好辣！！', ratScene(0, 60));
+    hitReaction('hotpot', 1.4);
+    ratSteam();
     Sfx.boom();
     pot.style.transition = 'opacity .4s'; pot.style.opacity = '0';
     setTimeout(()=>pot.remove(), 420);
@@ -987,12 +1499,167 @@ function confetti(){
   }
 }
 
+/* ============ 近战 / 鞭打 ============ */
+function ringShock(pt, color){
+  const g = svgEl('g');
+  const c = svgEl('circle', {
+    cx:0, cy:0, r:10, fill:'none',
+    stroke: color || '#FFF8EC', 'stroke-width':9, opacity:.9
+  });
+  g.appendChild(c);
+  fx.appendChild(g);
+  tween(380, (p)=>{
+    g.setAttribute('transform', 'translate(' + pt.x + ',' + pt.y + ')');
+    c.setAttribute('r', String(10 + 72*p));
+    c.setAttribute('opacity', String(.9*(1-p)));
+  }).then(()=>g.remove());
+}
+function meleeImpact(type, pt, power, opts){
+  opts = opts || {};
+  power = power || 1;
+  const food = FOODS[type] || FOODS.pan;
+  burst(pt, food.splat, 9, power);
+  if(type === 'baguette' || type === 'rollingpin'){
+    addRatSplat(type);
+    if(Math.random() < .5) addGroundSplat(type);
+  }
+  hitReaction(type, power, opts);
+  Sfx.hit(type);
+  shake(4 + power*2.5);
+  kick(power);
+  if(opts.quip !== '') popText(opts.quip || pick(food.quips), pt);
+  if(type === 'pan'){ ringShock(pt); stars(pt); }
+  if(type === 'whip'){ addWelt(); ringShock(pt, '#F2D98B'); }
+}
+
+async function baguetteRush(){
+  const weapon = equipWeapon('baguette', 2.2, -20);
+  await dashTo(-380, 320);
+  leanTo(-7, 160);
+  for(let i=0;i<3;i++){
+    const pt = ratScene(rand(-12,12), 55 + i*42);
+    await tween(150, (p)=>{
+      armSwing.setAttribute('transform', 'rotate(' + lerp(-10,82,easeOut(p)) + ')');
+    });
+    meleeImpact('baguette', pt, 1.1, { quip: i === 2 ? '梆梆梆！' : '' });
+    await tween(120, (p)=>{
+      armSwing.setAttribute('transform', 'rotate(' + lerp(82,-10,easeOut(p)) + ')');
+    });
+    await wait(30);
+  }
+  weapon.remove();
+  armSwing.setAttribute('transform','');
+  await wait(100);
+  leanTo(0, 160);
+  await dashHome(300);
+}
+
+async function panSlam(){
+  const weapon = equipWeapon('pan', 2.1, -80);
+  await dashTo(-400, 340);
+  leanTo(-8, 160);
+  await tween(230, (p)=>{
+    armSwing.setAttribute('transform', 'rotate(' + lerp(0,95,easeOut(p)) + ')');
+  });
+  await tween(130, (p)=>{
+    armSwing.setAttribute('transform', 'rotate(' + lerp(95,8,easeIn(p)) + ')');
+  });
+  meleeImpact('pan', ratScene(0,58), 1.9, { quip:'哐当！！' });
+  ratHatPop(2.2);
+  await wait(280);
+  await tween(220, (p)=>{
+    armSwing.setAttribute('transform', 'rotate(' + lerp(8,0,easeOut(p)) + ')');
+  });
+  weapon.remove();
+  armSwing.setAttribute('transform','');
+  leanTo(0, 160);
+  await dashHome(320);
+}
+
+async function rollingPinCombo(){
+  const weapon = equipWeapon('rollingpin', 2.0, 0);
+  await dashTo(-380, 300);
+  leanTo(-7, 150);
+  for(let i=0;i<4;i++){
+    const high = i % 2 === 0;
+    await tween(100, (p)=>{
+      armSwing.setAttribute('transform', 'rotate(' + lerp(high?12:84, high?84:12, easeInOut(p)) + ')');
+    });
+    const pt = ratScene(rand(-24,24), rand(60,175));
+    meleeImpact('rollingpin', pt, .9, { quip: i === 3 ? '咚咚咚咚！' : '' });
+    await wait(15);
+  }
+  weapon.remove();
+  armSwing.setAttribute('transform','');
+  setFace('dizzy', 1600);
+  starsOrbit();
+  await wait(120);
+  leanTo(0, 150);
+  await dashHome(300);
+}
+
+function whipCrack(alt){
+  return (async ()=>{
+    const target = ratScene(rand(-22,22), rand(70,170));
+    const hand = { x: 960 + state.px - 70, y: 348 };
+    const midX = lerp(hand.x, target.x, .5), midY = lerp(hand.y, target.y, .5);
+    const mid1 = { x: lerp(hand.x, target.x, .3), y: hand.y - 110 + (alt ? 46 : -46) };
+    const mid2 = { x: lerp(hand.x, target.x, .68), y: target.y - 120 - (alt ? 26 : 0) };
+    const g = svgEl('g');
+    fx.appendChild(g);
+    const d = 'M' + hand.x + ' ' + hand.y +
+      ' Q ' + mid1.x + ' ' + mid1.y + ' ' + midX + ' ' + midY +
+      ' Q ' + mid2.x + ' ' + mid2.y + ' ' + target.x + ' ' + target.y;
+    const p1 = svgEl('path', { d, fill:'none', stroke:'#C9A24F', 'stroke-width':13, 'stroke-linecap':'round' });
+    const p2 = svgEl('path', { d, fill:'none', stroke:'#F5DE9C', 'stroke-width':6, 'stroke-linecap':'round' });
+    g.appendChild(p1);
+    g.appendChild(p2);
+    const len = Math.max(240, p1.getTotalLength ? p1.getTotalLength() : 600);
+    [p1,p2].forEach(el=>{
+      el.setAttribute('stroke-dasharray', String(len));
+      el.setAttribute('stroke-dashoffset', String(len));
+    });
+    Sfx.whoosh();
+    await tween(210, (p)=>{
+      const e = easeOut(p);
+      [p1,p2].forEach(el=>el.setAttribute('stroke-dashoffset', String(len*(1-e))));
+      armSwing.setAttribute('transform', 'rotate(' + lerp(-10,82,e) + ')');
+    });
+    await wait(150);
+    Sfx.crack();
+    flashRat();
+    shake(6);
+    kick(1.2);
+    hitReaction('whip', 1.35);
+    addWelt();
+    ringShock(target, '#F2D98B');
+    popText('啪！', target);
+    stars(target);
+    await tween(260, (p)=>{
+      const e = easeInOut(p);
+      [p1,p2].forEach(el=>el.setAttribute('stroke-dashoffset', String(-len*e)));
+      armSwing.setAttribute('transform', 'rotate(' + lerp(82,0,e) + ')');
+    });
+    g.remove();
+  })();
+}
+async function noodleWhip(){
+  await dashTo(-70, 200);
+  leanTo(-4, 160);
+  for(let i=0;i<3;i++){
+    await whipCrack(i % 2 === 0);
+    await wait(130);
+  }
+  armSwing.setAttribute('transform','');
+  leanTo(0, 150);
+  await dashHome(220);
+}
+
 /* ============ 招式表（由简到繁） ============ */
 const MOVES = [
   { name:'砸蛋糕', icon:'cake', run: async ()=>{
       await armThrow();
       await throwFood('cake', { size:60, dur:430, arc:120, spin:140 });
-      setFace('hit', 700);
     }},
   { name:'苹果弹弓', icon:'apple', run: async ()=>{
       Sfx.whoosh();
@@ -1001,21 +1668,8 @@ const MOVES = [
       Sfx.bonk();
       stars(pt);
     }},
-  { name:'番茄三连', icon:'tomato', run: async ()=>{
-      await armThrow();
-      await Promise.all([0,120,240].map(async d=>{
-        await wait(d);
-        return throwFood('tomato', { size:40, dur:360, arc:100, spin:360, power:.85 });
-      }));
-    }},
-  { name:'法棍连打', icon:'baguette', run: async ()=>{
-      for(let i=0;i<3;i++){
-        armThrow(180);
-        await wait(90);
-        await throwFood('baguette', { size:56, dur:300, arc:80, spin:900, power:1.25 });
-      }
-      setFace('hit', 800);
-    }},
+  { name:'法棍冲刺', icon:'baguette', run: baguetteRush },
+  { name:'意面抽打', icon:'spaghetti', run: noodleWhip },
   { name:'披萨飞盘', icon:'pizza', run: async ()=>{
       await armThrow();
       const pt = await throwFood('pizza', { size:62, dur:520, arc:60, spin:1080 });
@@ -1023,16 +1677,11 @@ const MOVES = [
       cheesePull(pt);
       shake(7);
     }},
-  { name:'意面套索', icon:'spaghetti', run: async ()=>{
-      await armThrow(220);
-      await lassoSqueeze();
-    }},
   { name:'冰淇淋炮', icon:'icecream', run: async ()=>{
       await armThrow();
       for(let i=0;i<3;i++){
         await throwFood('icecream', { size:46 + i*4, dur:380, arc:120, spin:540, power:1.1 });
       }
-      setFace('hit', 600);
     }},
   { name:'甜品暴雨', icon:'cupcake', run: async ()=>{
       Sfx.pop();
@@ -1045,17 +1694,8 @@ const MOVES = [
       tintRat('#FF8A65', 900);
       setFace('dizzy', 1800);
     }},
-  { name:'后厨大乱斗', icon:'pan', run: async ()=>{
-      Sfx.clang(); shake(5);
-      const items = ['pan','egg','baguette','pan','chicken'];
-      for(const it of items){
-        armThrow(150);
-        await wait(70);
-        await throwFood(it, { size:50, dur:320, arc:110, spin:540, power:1.15 });
-      }
-      setFace('dizzy', 1200);
-      Sfx.boom();
-    }},
+  { name:'平底锅拍击', icon:'pan', run: panSlam },
+  { name:'擀面杖旋风', icon:'rollingpin', run: rollingPinCombo },
   { name:'满汉全席', icon:'chicken', run: async ()=>{
       Sfx.fanfare();
       const items = ['chicken','pizza','cake','apple','tomato'];
@@ -1223,7 +1863,18 @@ $('#btnClean').addEventListener('click', ()=>{
   fx.innerHTML = '';
   setFace('normal');
   state.theta = 0; state.omega = 0;
+  state.px = 0; state.py = 0; state.lean = 0; state.heat = 0;
+  armSwing.setAttribute('transform','');
+  ratBodyEl.setAttribute('transform','');
+  ratHead.setAttribute('transform','');
+  ratHat.setAttribute('transform','');
+  ratLegL.setAttribute('transform', RAT_BASE.legL);
+  ratLegR.setAttribute('transform', RAT_BASE.legR);
+  ratArmL.setAttribute('transform', RAT_BASE.armL);
+  ratArmR.setAttribute('transform', RAT_BASE.armR);
+  ratTail.setAttribute('transform', RAT_BASE.tail);
   ratTint.setAttribute('opacity','0');
+  document.querySelectorAll('#weapon').forEach(e=>e.remove());
   toast('厨房打扫干净啦');
 });
 
@@ -1256,7 +1907,7 @@ function loop(now){
   if(state.theta > 1.02){ state.theta = 1.02; state.omega *= -0.35; }
   if(state.theta < -1.02){ state.theta = -1.02; state.omega *= -0.35; }
   ratGroup.setAttribute('transform', 'translate(' + RAT.x + ',' + RAT.y + ') rotate(' + (state.theta*57.2958) + ')');
-  princessGroup.setAttribute('transform', 'translate(960,' + (475 + Math.sin(now/700)*2.5) + ')');
+  princessGroup.setAttribute('transform', 'translate(' + (960 + state.px) + ',' + (475 + state.py + Math.sin(now/700)*2.5) + ') rotate(' + state.lean + ')');
   requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
